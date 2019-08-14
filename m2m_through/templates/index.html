@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>M2M Through</h1>
+    <h2>Overview</h2>
+    <p>The purpose of this project is to be able to use a through on a Many to Many table relationship.</p>
+    <img src="{% static 'img/class-model.png' %}" />
+    <p>The filename should be generated from the name of the first Publisher of the Submission.</p>
+    <p>I can't seem to get this to work.  So this project is an attempt to solve this problem.</p>
+{% endblock %}

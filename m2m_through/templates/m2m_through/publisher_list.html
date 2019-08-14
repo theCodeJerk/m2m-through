@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %}Publishers{% endblock %}
+
+{% block content %}
+    <h1>Publishers</h1>
+    <a href="{% url 'create_publisher' %}">Create Publisher</a>
+    {% if publishers.count < 1 %}
+        <p>There are no publishers.</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Psuedonym</th>
+            </tr>
+            {% for publisher in publishers %}
+                <tr>
+                    <td>{{ publisher.user }}</td>
+                    <td>{{ publisher.pseudonym }}</td>
+                </tr>
+            {% endfor %}
+    {% endif %}
+{% endblock %}

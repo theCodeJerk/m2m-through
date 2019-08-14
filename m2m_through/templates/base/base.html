@@ -1,0 +1,136 @@
+{% load staticfiles %}
+{% load static %}
+{% load elements %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <title>{% block title %}Home{% endblock %} - M2M Through Demo</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        {% include 'partials/favicon.html' %}
+        {% block additional_head %}{% endblock %}
+</head>
+
+    <body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+
+                    <span class="navbar-logo">
+                        <a href="{% url 'home' %}">
+                            <img src="{% static 'img/logo.jpg' %}" alt="The Code Jerk" title="The Code Jerk">
+                        </a>
+                    </span>
+
+                    <a class="navbar-brand" href="{% url 'home' %}">The Code Jerk</a>
+                    
+                    <!-- Toggler/collapsibe Button -->
+                    {% hamburger_button target_id="collapsibleNavbar" %}
+                            
+                    <!-- Navbar links -->
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                {% if active_menu == 'submissions' %}
+                                    <a class="nav-link active" href="{% url 'list_submissions' %}">Submissions</a>
+                                {% else %}
+                                    <a class="nav-link" href="{% url 'list_submissions' %}">Submissions</a>
+                                {% endif %}
+                            </li>
+                            <li class="nav-item">
+                                {% if active_menu == 'publishers' %}
+                                    <a class="nav-link active" href="{% url 'list_publishers' %}">Publishers</a>
+                                {% else %}
+                                    <a class="nav-link" href="{% url 'list_publishers' %}">Publishers</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div> 
+                </nav>
+        <article>
+                
+                
+                <main>
+                    <div class="messages_area">
+                        {% block messages %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        {{ message|safe }}
+                                      </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+
+                    <div class="main_content">
+                        {% block content %}{% endblock %}
+                    </div>
+                </main>
+
+        </article>
+        
+                <footer>
+                    <div class="container">
+                        <div class="col-12 col-md-12">
+                            <div class="media-wrap">
+                                <a href="{% url 'home' %}">
+                                    <img class="footer-logo" src="{% static 'img/logo.jpg' %}" alt="The Code Jerk">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-12">
+                            <p>Email: <a href="mailto:hmcclungiii@thecodejerk.com">hmcclungiii@thecodejerk.com</a></p>
+                        </div>
+
+                        <div class="media-container-row" style="height: 2px;">
+                            <div class="col-sm-12" style="height: 2px;">
+                                <hr style="color: white;" />
+                            </div>
+                        </div>
+
+                        <div class="media-container-row">
+                            <div class="copyright">
+                                <p>
+                                    © Copyright 2019 hmcclungiii (The Code Jerk) - All Rights Reserved
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </footer> 
+
+        <!-- Scroll to top button -->
+        {% return_to_top font_color="#e7e7e7" background_color="#008181" %}
+
+        <script type="text/javascript">
+            $('#search_drop').on('shown.bs.collapse', function() {
+                $('#search_str').focus();
+            });
+            $('#collapsibleNavbar').on('shown.bs.collapse', function() {
+                $('#search_str').focus();
+            });
+            $(window).scroll(function() {
+                if ($(document).scrollTop() > 50) {
+                    $('nav').addClass('shrink');
+                } else {
+                    $('nav').removeClass('shrink');
+                }
+            });
+        </script>
+    
+    </body>
+</html>
+

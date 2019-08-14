@@ -1,0 +1,65 @@
+<style>
+    #{{ id }} {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: {{ background_color }};
+        opacity: 0.7;
+        width: 50px;
+        height: 50px;
+        display: block;
+        text-decoration: none;
+        -webkit-border-radius: 35px;
+        -moz-border-radius: 35px;
+        border-radius: 35px;
+        display: none;
+        -webkit-transition: all 0.3s linear;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    #{{ id }} i {
+        color: {{ font_color }};
+        margin: 0;
+        position: relative;
+        left: 16px;
+        top: 13px;
+        font-size: 19px;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    #{{ id }}:hover {
+        background-color: {{ background_color }};
+        opacity: 0.9;
+    }
+    #{{ id }}:hover i {
+        color: {{ font_color }};
+        top: 5px;
+    }
+</style>
+
+<!-- Return to Top -->
+<a href="javascript:" id="{{ id }}"><i class="icon-chevron-up"></i></a>
+
+<!-- ICON NEEDS FONT AWESOME FOR CHEVRON UP ICON -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+<script type="text/javascript">
+    // ===== Scroll to Top ====
+    $(window).scroll(function() {
+        if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+            $('#{{ id }}').fadeIn(200);    // Fade in the arrow
+        } else {
+            $('#{{ id }}').fadeOut(200);   // Else fade out the arrow
+        }
+    });
+    $('#{{ id }}').click(function() {      // When arrow is clicked
+        $('body,html').animate({
+            scrollTop : 0                       // Scroll to top of body
+        }, 500);
+    });
+</script>

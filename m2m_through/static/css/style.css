@@ -1,0 +1,18 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+.navbar-logo a img, .footer-logo {
+    width: 32px;
+}
+
+.main_content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

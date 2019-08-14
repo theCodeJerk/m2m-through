@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %}Submissions{% endblock %}
+
+{% block content %}
+    <h1>Submissions</h1>
+    <a href="{% url 'create_submission' %}">Create Submission</a>
+    {% if submissions.count < 1 %}
+        <p>There are no submissions.</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Upload</th>
+                <th>Publishers</th>
+            </tr>
+            {% for submission in submissions %}
+                <tr>
+                    <td>{{ submission.name }}</td>
+                    <td>{{ submission.upload }}</td>
+                    <td>
+                        {% for publisher in submission.publishers.all %}
+                            {{ publisher.pseudonym }}<br/>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

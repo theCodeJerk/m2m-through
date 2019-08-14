@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %}Create Submission{% endblock %}
+
+{% block content %}
+    <h1>Create Submission</h1>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="ui right floated positive button">
+            <i class="save icon"></i> Submit Submission
+        </button>
+    </form>
+{% endblock %}
